@@ -21,5 +21,7 @@ jobs:
           cache: "pnpm"
 
       - run: pnpm install --frozen-lockfile
+
       - run: pnpm run lint && pnpm run build
+
       - run: pnpm run test && pnpm run test:e2e

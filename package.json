@@ -10,8 +10,8 @@
     "build": "tsup lib/index.ts --format cjs,esm --dts-resolve --clean",
     "release": "pnpm run build && changeset publish",
     "lint": "tsc",
-    "test": "cd example/typescript-starter && pnpm run test",
-    "test:e2e": "cd example/typescript-starter && pnpm run test:e2e"
+    "test": "cd example/typescript-starter && pnpm i && pnpm run test",
+    "test:e2e": "cd example/typescript-starter && pnpm i && pnpm run test:e2e"
   },
   "peerDependencies": {
     "@nestjs/common": ">= 6.9.0",
