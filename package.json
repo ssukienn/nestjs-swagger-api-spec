@@ -1,0 +1,25 @@
+{
+  "name": "nestjs-swagger-api-spec",
+  "version": "0.0.1",
+  "author": "Szymon Sukiennik",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup lib/index.ts --format cjs,esm --dts-resolve --clean",
+    "release": "pnpm run build && changeset publish",
+    "lint": "tsc",
+    "test": "cd example/typescript-starter && pnpm run test",
+    "test:e2e": "cd example/typescript-starter && pnpm run test:e2e"
+  },
+  "peerDependencies": {
+    "@nestjs/common": ">= 6.9.0",
+    "@nestjs/swagger": ">= 1.x.x"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.26.2",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2"
+  }
+}
