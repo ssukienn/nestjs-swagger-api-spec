@@ -6,10 +6,10 @@ settings:
 
 dependencies:
   '@nestjs/common':
-    specifier: '>= 6.9.0'
+    specifier: '>= 6.9'
     version: 6.9.0(reflect-metadata@0.1.10)(rxjs@6.6.7)
   '@nestjs/swagger':
-    specifier: '>= 1.x.x'
+    specifier: '*'
     version: 1.0.0(@nestjs/common@6.9.0)(@nestjs/core@4.6.6)(lodash@4.17.21)(reflect-metadata@0.1.10)
 
 devDependencies:
