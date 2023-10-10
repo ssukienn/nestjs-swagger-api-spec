@@ -1,6 +1,6 @@
 {
   "name": "nestjs-swagger-api-spec",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "author": "Szymon Sukiennik",
   "license": "MIT",
   "main": "dist/index.js",
