@@ -15,7 +15,7 @@ api decorators. All api decorators exposed from `@nestjs.swagger` can be applied
 ### 1. Install dependency
 
 ```
-$ npm install ssukienn/nestjs-swagger-api-spec
+$ npm install nestjs-swagger-api-spec
 ```
 
 ### 2. Use `@ApiSpecification` decorator
