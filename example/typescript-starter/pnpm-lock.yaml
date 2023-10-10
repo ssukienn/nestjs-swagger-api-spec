@@ -18,6 +18,9 @@ dependencies:
     specifier: ^7.1.13
     version: 7.1.13(@nestjs/common@10.0.0)(@nestjs/core@10.0.0)(reflect-metadata@0.1.13)
   nestjs-swagger-api-spec:
+    specifier: ^0.0.2
+    version: 0.0.2(@nestjs/common@10.0.0)(@nestjs/swagger@7.1.13)
+  nestjs-swagger-api-spec-local:
     specifier: file:../..
     version: file:../..(@nestjs/common@10.0.0)(@nestjs/swagger@7.1.13)
   reflect-metadata:
@@ -4251,6 +4254,16 @@ packages:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
 
+  /nestjs-swagger-api-spec@0.0.2(@nestjs/common@10.0.0)(@nestjs/swagger@7.1.13):
+    resolution: {integrity: sha512-V2XUvWo+LwfSHgluLY4e+CnTTJlXeHjT0GHZxjBSiDw8VHmbkXCixd3dR93qLtRS1d1CgWo7UTfSILSqqW2N9w==}
+    peerDependencies:
+      '@nestjs/common': '>= 6.9'
+      '@nestjs/swagger': '*'
+    dependencies:
+      '@nestjs/common': 10.0.0(reflect-metadata@0.1.13)(rxjs@7.8.1)
+      '@nestjs/swagger': 7.1.13(@nestjs/common@10.0.0)(@nestjs/core@10.0.0)(reflect-metadata@0.1.13)
+    dev: false
+
   /node-abort-controller@3.1.1:
     resolution: {integrity: sha512-AGK2yQKIjRuqnc6VkX2Xj5d+QW8xZ87pa1UK6yA6ouUyuxfHuMP6umE5QK7UmTeOAymo+Zx1Fxiuw9rVx8taHQ==}
     dev: true
@@ -5679,8 +5692,8 @@ packages:
     id: file:../..
     name: nestjs-swagger-api-spec
     peerDependencies:
-      '@nestjs/common': '>= 6.9.0'
-      '@nestjs/swagger': '>= 1.x.x'
+      '@nestjs/common': '>= 6.9'
+      '@nestjs/swagger': '*'
     dependencies:
       '@nestjs/common': 10.0.0(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@nestjs/swagger': 7.1.13(@nestjs/common@10.0.0)(@nestjs/core@10.0.0)(reflect-metadata@0.1.13)
