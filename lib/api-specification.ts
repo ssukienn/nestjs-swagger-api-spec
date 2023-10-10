@@ -1,10 +1,6 @@
 import { applyDecorators } from '@nestjs/common';
 import * as nestjsSwaggerModule from '@nestjs/swagger';
 
-const isTruthy = <T>(argument: T | undefined | null): argument is T => {
-    return !!argument;
-};
-
 export const ApiSpecification = (spec: ApiOptions) => {
     let decorators: Array<MethodDecorator | ClassDecorator | PropertyDecorator>;
 
@@ -23,9 +19,13 @@ export const ApiSpecification = (spec: ApiOptions) => {
                 return descriptors;
             }
         })
-        .filter(isTruthy);
+        .filter(isDefined);
 
     return applyDecorators(...decorators);
+};
+
+const isDefined = <T>(argument: T | undefined | null): argument is T => {
+    return !!argument;
 };
 
 type ExtractMethods<T> = {

@@ -14,8 +14,8 @@
     "test:e2e": "cd example/typescript-starter && pnpm i && pnpm run test:e2e"
   },
   "peerDependencies": {
-    "@nestjs/common": ">= 6.9.0",
-    "@nestjs/swagger": ">= 1.x.x"
+    "@nestjs/common": ">= 6.9",
+    "@nestjs/swagger": "*"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
