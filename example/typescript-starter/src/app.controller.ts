@@ -4,6 +4,7 @@ import { appControllerOpenApiSpec, appHelloHandlerOpenApiSpec } from './app.open
 import { AppService } from './app.service';
 
 @ApiSpecification(appControllerOpenApiSpec)
+@ApiOperation
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
@@ -13,4 +14,5 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
+
 }

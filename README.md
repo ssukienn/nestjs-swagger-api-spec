@@ -1,8 +1,8 @@
 Motivation
 ===
 
-Tidying up `@Controller` classes and `@Get` (etc.) handlers from excessive number of `@nestjs/swagger` 
-api decorators. All api decorators exposed from `@nestjs.swagger` can be applied from singel decorator.
+Tidying up `@Controller` classes and `@Get` (etc.) handlers from `@nestjs/swagger` 
+api decorators pollution. All api decorators from `@nestjs/swagger` can be applied with use of single decorator.
 
 
 ## Requirements
@@ -21,7 +21,9 @@ $ npm install nestjs-swagger-api-spec
 ### 2. Use `@ApiSpecification` decorator
 
 Decorate controller or handler wih `@ApiSpecification`. It can apply all `@Api` decorators passed in. 
-The order of appliance depends on the JS iteration order of keys and the order in which Nest applies decorators.
+
+The order of decorator expressions depends on the [ECMAScript iteration order of keys](https://tc39.es/ecma262/#sec-ordinaryownpropertykeys). `ApiOptiona` keys (i.e. `apiResponseOptions`) are only strings so chronological order is guaranteed.
+The order of expressions depends on the Typescript [decorator composition](https://www.typescriptlang.org/docs/handbook/decorators.html#decorator-composition) and the order in which Nest applies decorators.
 
 
 ```typescript
