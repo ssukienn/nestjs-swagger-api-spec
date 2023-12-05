@@ -10,7 +10,8 @@
     "build": "tsup lib/index.ts --format cjs,esm --dts-resolve --clean",
     "release": "pnpm run build && changeset publish",
     "lint": "tsc",
-    "test": "cd example/typescript-starter && pnpm i && pnpm run test",
+    "test": "pnpm run \"/^test:.*/\" --color",
+    "test:lib": "pnpm jest",
     "test:e2e": "cd example/typescript-starter && pnpm i && pnpm run test:e2e"
   },
   "peerDependencies": {

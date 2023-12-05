@@ -1,10 +1,12 @@
 import { Controller, Get } from '@nestjs/common';
 import { ApiSpecification } from 'nestjs-swagger-api-spec';
-import { appControllerOpenApiSpec, appHelloHandlerOpenApiSpec } from './app.open-api';
+import {
+  appControllerOpenApiSpec,
+  appHelloHandlerOpenApiSpec,
+} from './app.open-api';
 import { AppService } from './app.service';
 
 @ApiSpecification(appControllerOpenApiSpec)
-@ApiOperation
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
@@ -14,5 +16,4 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
-
 }
