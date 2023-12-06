@@ -1,6 +1,5 @@
 import { applyDecorators } from "@nestjs/common";
 import * as nestjsSwaggerModule from "@nestjs/swagger";
-import { PriorityQueue } from "./priority-queue";
 
 type OrderedParamsDecoratorTuple = {
   tuple: [
@@ -20,14 +19,10 @@ export const ApiSpecification = (spec: ApiOptions<OrderSuffix>) => {
   );
 };
 
-export const orderedParamsToApiDecorators = (spec: ApiOptions<OrderSuffix>) => {
-  let orderedParamsToDecorators: Array<OrderedParamsDecoratorTuple["tuple"]> =
-    [];
-  const queue = new PriorityQueue(
-    (a: OrderedParamsDecoratorTuple, b: OrderedParamsDecoratorTuple) => {
-      return b.order - a.order;
-    },
-  );
+export const orderedParamsToApiDecorators = (
+  spec: ApiOptions<OrderSuffix>,
+): Array<OrderedParamsDecoratorTuple["tuple"]> => {
+  const array: OrderedParamsDecoratorTuple[] = [];
 
   (Object.keys(spec) as Array<keyof ApiOptions<OrderSuffix>>).forEach((key) => {
     const { specApiProperty, order } = splitSpecApiPropertyAnOrder(key);
@@ -49,7 +44,7 @@ export const orderedParamsToApiDecorators = (spec: ApiOptions<OrderSuffix>) => {
 
       capturedParameters.forEach((parameters) => {
         apiDecorator(parameters as any);
-        queue.add({
+        array.push({
           tuple: [parameters, apiDecorator, apiDecoratorType],
           order: preciseOrder(order),
         });
@@ -57,17 +52,16 @@ export const orderedParamsToApiDecorators = (spec: ApiOptions<OrderSuffix>) => {
     }
   });
 
-  while (queue.size) {
-    const { tuple } = queue.poll() as OrderedParamsDecoratorTuple;
-    orderedParamsToDecorators.push(tuple);
-  }
+  const sortedArray = [...array]
+    .sort((a, b) => a.order - b.order)
+    .map((a) => a.tuple);
 
-  if (orderedParamsToDecorators.length === 0) {
+  if (sortedArray.length === 0) {
     throw new Error(
       `${ApiSpecification.name} decorator must have at least one Api decorator.`,
     );
   }
-  return orderedParamsToDecorators;
+  return sortedArray;
 };
 
 const checkApiDecoratorPropertyName = (property: unknown) => {

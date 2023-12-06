@@ -41,5 +41,8 @@
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "testEnvironment": "node"
+  },
+  "volta": {
+    "node": "20.10.0"
   }
 }
