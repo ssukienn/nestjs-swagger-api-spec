@@ -12,10 +12,10 @@ describe("apiDecorators", () => {
       ],
       apiOperationOptions: (apiDecorator) => [
         apiDecorator({
-          title: "title",
+          summary: "title",
           description: "3",
         }),
-        apiDecorator({ title: "title", description: "4" }),
+        apiDecorator({ summary: "title", description: "4" }),
       ],
     });
 
@@ -34,7 +34,7 @@ describe("apiDecorators", () => {
     const apiOperationOptions3 = decoratorArray[2];
     expect(apiOperationOptions3?.[0]).toEqual([
       {
-        title: "title",
+        summary: "title",
         description: "3",
       },
     ]);
@@ -44,7 +44,7 @@ describe("apiDecorators", () => {
     const apiOperationOptions4 = decoratorArray[3];
     expect(apiOperationOptions4?.[0]).toEqual([
       {
-        title: "title",
+        summary: "title",
         description: "4",
       },
     ]);
@@ -63,10 +63,10 @@ describe("apiDecorators", () => {
       ],
       apiOperationOptions: (apiDecorator) => [
         apiDecorator({
-          title: "title",
+          summary: "title",
           description: "1",
         }),
-        apiDecorator({ title: "title", description: "2" }),
+        apiDecorator({ summary: "title", description: "2" }),
       ],
     });
 
@@ -75,7 +75,7 @@ describe("apiDecorators", () => {
     const apiOperations1 = decoratorArray[0];
     expect(apiOperations1?.[0]).toEqual([
       {
-        title: "title",
+        summary: "title",
         description: "1",
       },
     ]);
@@ -85,7 +85,7 @@ describe("apiDecorators", () => {
     const apiOperations2 = decoratorArray[1];
     expect(apiOperations2?.[0]).toEqual([
       {
-        title: "title",
+        summary: "title",
         description: "2",
       },
     ]);

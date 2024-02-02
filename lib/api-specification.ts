@@ -43,7 +43,6 @@ export const orderedParamsToApiDecorators = (
       ) as unknown as Array<Parameters<ApiDecorators[typeof apiDecoratorType]>>;
 
       capturedParameters.forEach((parameters) => {
-        apiDecorator(parameters as any);
         array.push({
           tuple: [parameters, apiDecorator, apiDecoratorType],
           order: preciseOrder(order),
@@ -104,9 +103,15 @@ type NestJsSwaggerModule = typeof nestjsSwaggerModule;
 
 type NestJsSwaggerMethods = ExtractMethods<NestJsSwaggerModule>;
 
+type NestJSwaggerNotComposableMethodsKeys =
+  | "ApiHideProperty"
+  | "ApiPropertyOptions";
+
 type ApiDecorators = {
   [K in keyof NestJsSwaggerMethods as K extends `Api${string}`
-    ? K
+    ? K extends NestJSwaggerNotComposableMethodsKeys
+      ? never
+      : K
     : never]: NestJsSwaggerMethods[K];
 };
 
