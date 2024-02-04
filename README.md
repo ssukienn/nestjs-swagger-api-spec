@@ -1,39 +1,44 @@
 Motivation
 ===
 
-Tidying up `@Controller` classes and methods  (`@Get` route handler etc.) from `@nestjs/swagger` 
-OpenAPI decorators pollution. All relevant OpenAPI decorators from `@nestjs/swagger` can be applied by using single decorator.
-
+Simplify the management of `@Controller` classes and methods (e.g., `@Get` route handler) by addressing the issue of OpenAPI decorators pollution from `@nestjs/swagger`. This library provides a streamlined approach to apply all relevant OpenAPI decorators using a single decorator.
 
 ## Requirements
 
 * minimal `@nestjs/common@^7.6.0`
 * minimal `@nestjs/swagger@^4.8.1`
 
-For details check `package.json` ranges.
+For specific version details, refer to `package.json`.
+
 
 ## Usage
 
-### 1. Install dependency
+### 1. Install the Dependency
 
 ```
 $ npm install nestjs-swagger-api-spec
 ```
 
-### 2. Use `@ApiSpecification` decorator
+### 2. Use `@ApiSpecification` Decorator
 
-Decorate controller or handler wih `@ApiSpecification`. It can apply all `@Api` decorators passed in. 
-
-The order of decorator expressions depends on the [ECMAScript iteration order of keys](https://tc39.es/ecma262/#sec-ordinaryownpropertykeys). `ApiOptiona` keys (i.e. `apiResponseOptions`) are only strings so chronological order is guaranteed.
-The order of expressions depends on the Typescript [decorator composition](https://www.typescriptlang.org/docs/handbook/decorators.html#decorator-composition) and the order in which Nest applies decorators.
+Apply the `@ApiSpecification` decorator to controllers or handlers to automatically add relevant `@Api<name>` decorators. Decorator order is determined by ECMAScript iteration order for keys and can be adjusted using order suffixes.
 
 
+### Example
 ```typescript
 import { ApiSpecification, ApiOptions } from 'nestjs-swagger-api-spec';
 
 const exampleSpec: ApiOptions = {
-    apiResponseOptions: apiDecorator => [apiDecorator({status: 201, type: Number}), apiDecorator(...), ...],
-    //..
+    apiResponseOptions: (apiDecorator) => apiDecorator({ status: 200, description: "Applied in the middle, defined first." }),
+    apiOperationOptions1: (apiDecorator) => [
+        apiDecorator({
+            summary: "title",
+            description: "3",
+        }),
+        apiDecorator({ summary: "title", description: "Applied last, defined in the middle." }),
+    ],
+    'apiOperationOptions-1': (apiDecorator) => apiDecorator({ status: 200, description: "Applied first, defined last." },
+    //...
 }
 
 @ApiSpecification(exampleSpec)
@@ -42,27 +47,32 @@ class Example {
     
     @Get()
     @ApiSpecification({
-        apiResponseOptions: apiDecorator => [apiDecorator({status: 200, type: Number}), apiDecorator(...), ...]
-        //...
+        apiOperationOptions1: (apiDecorator) => apiDecorator({
+            summary: "customTitle",
+            description: "customDescription",
+        }),
+        // Additional decorators...
     })
     getExample() {
         //...
     }
 }
-````
+```
+
+### Decorator Ordering
+
+The order of decorators can be customized by adding a suffix number to the options properties. Positive numbers define the order in ascending fashion, while negative numbers represent the order in descending fashion. For instance, `apiOperationOptions1` and `'apiOperationOptions-1'` will apply decorators in different orders. Default order is `0`.
 
 ## Caveats
 
-The implementation depends on:
-- the decorator factories being named with `Api` prefix. So any decorator diverging from this convention will not be applied.
-- breaking the contract of `applyDecorators` in future Nest versions.
-
-There were no changes that would break the contract in `@nestjs/common` since `6.9.0` and each decorator in `@nestjs/swagger` has `Api` prefix
-so it should be safe to use.
+* Decorator factories must be named with the Api prefix.
+* Using property names with a format other than expected may result in errors.
+* `ApiProperty`, `ApiPropertyOptional`, and `ApiHideProperty` decorators are not supported for route handler decorators.
+* Future Nest versions breaking the contract of applyDecorators may impact the implementation.
 
 ## Getting Support & Contributing
 
-- Open issue or pull request.
+* Open issues or pull requests for support or contributions.
 
 ## License
 
