@@ -1,6 +1,7 @@
 import { ApiOptions } from 'nestjs-swagger-api-spec';
 
 export const appControllerOpenApiSpec: ApiOptions = {
+  apiExtraModelsOptions: () => [],
   apiFoundResponseOptions: (apiDecorator) => {
     return [apiDecorator({ status: 200 }), apiDecorator({ status: 200 })];
   },

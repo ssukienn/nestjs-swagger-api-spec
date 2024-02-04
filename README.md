@@ -1,14 +1,16 @@
 Motivation
 ===
 
-Tidying up `@Controller` classes and `@Get` (etc.) handlers from `@nestjs/swagger` 
-api decorators pollution. All api decorators from `@nestjs/swagger` can be applied with use of single decorator.
+Tidying up `@Controller` classes and methods  (`@Get` route handler etc.) from `@nestjs/swagger` 
+OpenAPI decorators pollution. All relevant OpenAPI decorators from `@nestjs/swagger` can be applied by using single decorator.
 
 
 ## Requirements
 
-* `@nestjs/common@6.9` or newer - needs to have `applyDecorators` utility method
-* `@nestjs/swagger` any version
+* minimal `@nestjs/common@^7.6.0`
+* minimal `@nestjs/swagger@^4.8.1`
+
+For details check `package.json` ranges.
 
 ## Usage
 

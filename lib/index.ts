@@ -1,1 +1,1 @@
-export {ApiSpecification, ApiOptions} from './api-specification'
+export { ApiSpecification, ApiOptions } from "./api-specification";
