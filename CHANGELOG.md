@@ -1,5 +1,11 @@
 # nestjs-swagger-api-spec
 
+## 1.1.0
+
+### Minor Changes
+
+- [#7](https://github.com/ssukienn/nestjs-swagger-api-spec/pull/7) [`ad1e20c`](https://github.com/ssukienn/nestjs-swagger-api-spec/commit/ad1e20cbd132b9de0b394c66187ccc64ef21100c) Thanks [@ssukienn](https://github.com/ssukienn)! - Support ordering
+
 ## 1.0.0
 
 ### Major Changes
