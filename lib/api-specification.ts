@@ -6,17 +6,17 @@ type OrderedDecorator = {
   order: number;
 };
 
-export const ApiSpecification = (spec: ApiOptions<OrderSuffix>) => {
+export const ApiSpecification = (spec: ApiOptions) => {
   let decorators = orderedParamsToApiDecorators(spec);
   return applyDecorators(...decorators);
 };
 
 const orderedParamsToApiDecorators = (
-  spec: ApiOptions<OrderSuffix>,
+  spec: ApiOptions,
 ): Array<ClassDecorator | MethodDecorator> => {
   const array: OrderedDecorator[] = [];
 
-  (Object.keys(spec) as Array<keyof ApiOptions<OrderSuffix>>).forEach((key) => {
+  (Object.keys(spec) as Array<keyof ApiOptions>).forEach((key) => {
     const { specApiProperty, order } = splitSpecApiPropertyAnOrder(key);
     const apiOptionsDecoratorProvider = spec[key];
 
@@ -75,9 +75,7 @@ const nanoTimeOrder = (order: number) => {
 };
 
 const REGEX = /^([a-zA-Z]+)Options(-?\d*)$/;
-const splitSpecApiPropertyAnOrder = (
-  property: keyof ApiOptions<OrderSuffix>,
-) => {
+const splitSpecApiPropertyAnOrder = (property: keyof ApiOptions) => {
   const match = property.match(REGEX);
   if (!match) {
     throw new Error(
@@ -112,8 +110,8 @@ type ApiDecoratorFactories = {
 
 type OrderSuffix = `${number}` | "";
 
-export type ApiOptions<Order extends string = ""> = {
-  [K in keyof ApiDecoratorFactories as `${Uncapitalize<K>}Options${Order}`]?: (
+export type ApiOptions = {
+  [K in keyof ApiDecoratorFactories as `${Uncapitalize<K>}Options${string}`]?: (
     apiDecorator: ApiDecoratorFactories[K] & { brand: K },
   ) =>
     | ReturnType<ApiDecoratorFactories[K] & { brand: K }>

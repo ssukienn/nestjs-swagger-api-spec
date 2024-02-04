@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import { ApiSpecification } from 'nestjs-swagger-api-spec';
+import { ApiSpecification } from 'nestjs-swagger-api-spec-local';
 import {
   appControllerOpenApiSpec,
   appHelloHandlerOpenApiSpec,

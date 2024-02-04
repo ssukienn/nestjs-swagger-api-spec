@@ -1,4 +1,4 @@
-import { ApiOptions } from 'nestjs-swagger-api-spec';
+import { ApiOptions } from 'nestjs-swagger-api-spec-local';
 
 export const appControllerOpenApiSpec: ApiOptions = {
   apiExtraModelsOptions: () => [],
