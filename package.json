@@ -3,6 +3,15 @@
   "version": "1.0.0",
   "author": "Szymon Sukiennik",
   "license": "MIT",
+  "keywords": [
+    "nestjs",
+    "swagger",
+    "api",
+    "spec",
+    "openapi"
+  ],
+  "description": "Decorator for aggregating all your @nestjs/swagger decorators into one place",
+  "repository": "https://github.com/ssukienn/nestjs-swagger-api-spec.git",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
