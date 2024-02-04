@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         node_version: [ 18, 20 ]
-        peer_version: [ {common: ^7.6.0, swagger: ^4.8.1}, {common: ^8.0.0, swagger: ^5.0.0}, {common: ^9.0.0, swagger: ^6.0.0}, {common: ^10.0.0, swagger: ^7.0.0}]
+        peer_version: [{common: ^7.6.0, swagger: ^4.8.1}, {common: ^8.0.0, swagger: ^5.0.0}, {common: ^9.0.0, swagger: ^6.0.0}, {common: ^10.0.0, swagger: ^7.0.0}]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -23,7 +23,7 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - run pnpm add @nestjs/common@${{ matrix.peer_version.common }} @nestjs/swagger@${{ matrix.peer_version.swagger }}
+      - run: pnpm add @nestjs/common@${{ matrix.peer_version.common }} @nestjs/swagger@${{ matrix.peer_version.swagger }}
 
       - run: pnpm run lint && pnpm run build
 
