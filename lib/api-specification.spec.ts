@@ -7,8 +7,13 @@ const bindTrailArgs = (fn: Function, ...bound_args: any[]) => {
   };
 };
 
-import { ApiExtraModels, ApiOperation, ApiResponse } from "@nestjs/swagger";
-import { ApiSpecification } from "./api-specification";
+import {
+  ApiExtraModels,
+  ApiOperation,
+  ApiQueryOptions,
+  ApiResponse,
+} from "@nestjs/swagger";
+import { ApiOptions, ApiSpecification } from "./api-specification";
 
 // Mock specific decorator factory to return their params instead of decorator itself
 jest.mock("@nestjs/swagger", () => ({
@@ -321,5 +326,13 @@ describe("ApiSpecification", () => {
         "ApiSpecification decorator must define at least one supported Api decorator.",
       );
     });
+  });
+});
+
+describe("ApiOptions", () => {
+  it("intellisense should work", () => {
+    const options: ApiOptions = {
+      apiQueryOptions: (apiDecorator) => [],
+    };
   });
 });
