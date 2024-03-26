@@ -1,5 +1,11 @@
 # nestjs-swagger-api-spec
 
+## 1.1.1
+
+### Patch Changes
+
+- [`2dfbf9c`](https://github.com/ssukienn/nestjs-swagger-api-spec/commit/2dfbf9c44eaede890ccf78994deb750d7c993221) Thanks [@ssukienn](https://github.com/ssukienn)! - fix property intellisense suggestions
+
 ## 1.1.0
 
 ### Minor Changes
