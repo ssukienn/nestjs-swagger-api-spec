@@ -108,10 +108,10 @@ type ApiDecoratorFactories = {
     : never]: NestJsSwaggerMethods[K];
 };
 
-type OrderSuffix = `${number}` | "";
-
 export type ApiOptions = {
-  [K in keyof ApiDecoratorFactories as `${Uncapitalize<K>}Options${string}`]?: (
+  [K in keyof ApiDecoratorFactories as `${Uncapitalize<K>}Options${
+    | number
+    | ""}`]?: (
     apiDecorator: ApiDecoratorFactories[K] & { brand: K },
   ) =>
     | ReturnType<ApiDecoratorFactories[K] & { brand: K }>
