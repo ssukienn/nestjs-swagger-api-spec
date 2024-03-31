@@ -88,32 +88,39 @@ const splitSpecApiPropertyAnOrder = (property: keyof ApiOptions) => {
   };
 };
 
-type ExtractMethods<T> = {
+type ExtractFunctions<T> = {
   [K in keyof T]: T[K] extends (...args: any[]) => any ? T[K] : never;
 };
 
 type NestJsSwaggerModule = typeof nestjsSwaggerModule;
 
-type NestJsSwaggerMethods = ExtractMethods<NestJsSwaggerModule>;
+type NestJsSwaggerMethods = ExtractFunctions<NestJsSwaggerModule>;
 
 type NestJSwaggerNotComposableMethodsKeys =
   // properties decorator are not used on controllers/handlers
   "ApiHideProperty" | "ApiProperty" | "ApiPropertyOptional";
+
+type BrandFunction<
+  Brand extends string,
+  OriginalFunc extends (...args: any[]) => any,
+> = (
+  ...args: Parameters<OriginalFunc>
+) => ReturnType<OriginalFunc> & { __returnTypeBrand: Brand };
 
 type ApiDecoratorFactories = {
   [K in keyof NestJsSwaggerMethods as K extends `Api${string}`
     ? K extends NestJSwaggerNotComposableMethodsKeys
       ? never
       : K
-    : never]: NestJsSwaggerMethods[K];
+    : never]: BrandFunction<K, NestJsSwaggerMethods[K]>;
 };
 
 export type ApiOptions = {
   [K in keyof ApiDecoratorFactories as `${Uncapitalize<K>}Options${
     | number
     | ""}`]?: (
-    apiDecorator: ApiDecoratorFactories[K] & { brand: K },
+    apiDecorator: ApiDecoratorFactories[K],
   ) =>
-    | ReturnType<ApiDecoratorFactories[K] & { brand: K }>
-    | Array<ReturnType<ApiDecoratorFactories[K] & { brand: K }>>;
+    | ReturnType<ApiDecoratorFactories[K]>
+    | Array<ReturnType<ApiDecoratorFactories[K]>>;
 };
