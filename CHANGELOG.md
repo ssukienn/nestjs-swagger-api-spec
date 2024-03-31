@@ -1,5 +1,11 @@
 # nestjs-swagger-api-spec
 
+## 1.2.0
+
+### Minor Changes
+
+- [`7cbfc44`](https://github.com/ssukienn/nestjs-swagger-api-spec/commit/7cbfc44882d6253ad5d49286686e9f6c520df16d) Thanks [@ssukienn](https://github.com/ssukienn)! - expect callback branded decorator return type
+
 ## 1.1.1
 
 ### Patch Changes
