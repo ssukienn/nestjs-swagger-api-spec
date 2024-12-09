@@ -5,8 +5,8 @@ Simplify the management of `@Controller` classes and methods (e.g., `@Get` route
 
 ## Requirements
 
-* minimal `@nestjs/common@^7.6.0`
-* minimal `@nestjs/swagger@^4.8.1`
+* minimal `@nestjs/common@^10`
+* minimal `@nestjs/swagger@^7`
 
 For specific version details, refer to `package.json`.
 

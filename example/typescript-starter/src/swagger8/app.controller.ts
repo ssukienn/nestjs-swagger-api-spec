@@ -5,6 +5,20 @@ import {
   appHelloHandlerOpenApiSpec,
 } from './app.open-api';
 import { AppService } from './app.service';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+
+
+export class Hello {
+  @ApiProperty()
+  hello: string;
+
+  @ApiProperty({ link: () => Hello })
+  @ApiPropertyOptional()
+  world?: string;
+
+  @ApiProperty({ link: () => Hello })
+  anotherWorld: string;
+}
 
 @ApiSpecification(appControllerOpenApiSpec)
 @Controller()
@@ -13,7 +27,7 @@ export class AppController {
 
   @ApiSpecification(appHelloHandlerOpenApiSpec)
   @Get()
-  getHello(): string {
+  getHello(): Hello {
     return this.appService.getHello();
   }
 }
@@ -23,7 +37,7 @@ export class SomeController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(): string {
+  getHello(): Hello {
     return this.appService.getHello();
   }
 }

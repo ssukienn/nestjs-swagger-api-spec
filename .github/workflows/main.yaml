@@ -8,14 +8,21 @@ jobs:
   build:
     strategy:
       matrix:
-        node_version: [ 18, 20 ]
-        peer_version: [{common: ^7.6.0, swagger: ^4.8.1}, {common: ^8.0.0, swagger: ^5.0.0}, {common: ^9.0.0, swagger: ^6.0.0}, {common: ^10.0.0, swagger: ^7.0.0}]
+        node_version: [
+          20,
+          22,
+          23
+        ]
+        peer_version: [
+          { common: 10, swagger: 7 },
+          { common: 10, swagger: 8 }
+        ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
         with:
-          version: 8
+          version: 9
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node_version }}
@@ -23,8 +30,12 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - run: pnpm add @nestjs/common@${{ matrix.peer_version.common }} @nestjs/swagger@${{ matrix.peer_version.swagger }}
-
       - run: pnpm run lint && pnpm run build
 
-      - run: pnpm run test
+      # if swagger: 8 then run test:swagger8 else swagger7, etc.
+      - run: |
+          pnpm -C example/typescript-starter add @nestjs/common@^${{ matrix.peer_version.common }} @nestjs/swagger@^${{ matrix.peer_version.swagger }}
+          pnpm run test-swagger${{ matrix.peer_version.swagger }}
+
+
+
