@@ -1,9 +1,13 @@
 import { ApiOptions } from 'nestjs-swagger-api-spec-local';
+import { Hello } from './app.controller';
 
 export const appControllerOpenApiSpec: ApiOptions = {
   apiExtraModelsOptions: () => [],
   apiFoundResponseOptions: (apiDecorator) => {
-    return [apiDecorator({ status: 200 }), apiDecorator({ status: 200 })];
+    return [
+      apiDecorator({ example: 'example' }),
+      apiDecorator({ example: 'example' }),
+    ];
   },
   apiResponseOptions: (apiDecorator) => [
     apiDecorator({ status: 211, type: String }),
@@ -12,6 +16,9 @@ export const appControllerOpenApiSpec: ApiOptions = {
 
 export const appHelloHandlerOpenApiSpec: ApiOptions = {
   apiResponseOptions: (apiDecorator) => [
-    apiDecorator({ status: 222, type: Number }),
+    apiDecorator({ status: 222, type: Hello }),
+  ],
+  apiLinkOptions: (apiDecorator) => [
+    apiDecorator({ from: Hello, routeParam: 'id' }),
   ],
 };
