@@ -1,5 +1,14 @@
 # nestjs-swagger-api-spec
 
+## 2.0.0
+
+### Major Changes
+
+- [#14](https://github.com/ssukienn/nestjs-swagger-api-spec/pull/14) [`65eee8e1e246e7ff62eeeed973e58ccc9d152884`](https://github.com/ssukienn/nestjs-swagger-api-spec/commit/65eee8e1e246e7ff62eeeed973e58ccc9d152884) Thanks [@ssukienn](https://github.com/ssukienn)! - \* Support @nestjs/swagger v8
+  - BREAKING: Remove support for @nestjs/swagger v6 and below
+  - BREAKING: Remove support for @nestjs/common v10 and below
+  - BREAKING: Remove support for Node 18
+
 ## 1.2.0
 
 ### Minor Changes
