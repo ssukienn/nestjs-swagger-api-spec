@@ -1,5 +1,17 @@
 # nestjs-swagger-api-spec
 
+## 3.0.0
+
+### Major Changes
+
+- [#52](https://github.com/ssukienn/nestjs-swagger-api-spec/pull/52) [`12fa199`](https://github.com/ssukienn/nestjs-swagger-api-spec/commit/12fa19950d9622e3913c9357267a767232b21a91) Thanks [@ssukienn](https://github.com/ssukienn)! - Support NestJS 11 and 12 (and matching `@nestjs/swagger` majors). Drop NestJS 10 and `@nestjs/swagger` 7/8.
+
+  `ApiSchema` and `ApiResponseProperty` are excluded from `ApiOptions` because they apply to DTOs, not controllers or handlers.
+
+### Patch Changes
+
+- [#61](https://github.com/ssukienn/nestjs-swagger-api-spec/pull/61) [`ab68e2f`](https://github.com/ssukienn/nestjs-swagger-api-spec/commit/ab68e2fa577ff19beed8e1f3eb6924d1cde78448) Thanks [@ssukienn](https://github.com/ssukienn)! - Bump development dependencies and GitHub Actions (Changesets 3, TypeScript 6, `@types/node` 26).
+
 ## 2.0.0
 
 ### Major Changes
