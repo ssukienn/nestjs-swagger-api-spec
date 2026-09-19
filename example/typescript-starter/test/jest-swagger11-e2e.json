@@ -1,0 +1,26 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": ".",
+  "testEnvironment": "node",
+  "testRegex": ".swagger11.e2e-spec.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": [
+      "@swc/jest",
+      {
+        "jsc": {
+          "parser": {
+            "syntax": "typescript",
+            "decorators": true
+          },
+          "transform": {
+            "legacyDecorator": true,
+            "decoratorMetadata": true
+          }
+        }
+      }
+    ]
+  },
+  "transformIgnorePatterns": [
+    "/node_modules/(?!\\.pnpm/@nestjs\\+|@nestjs/)"
+  ]
+}
