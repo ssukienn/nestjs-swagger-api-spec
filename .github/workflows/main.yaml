@@ -19,11 +19,11 @@ jobs:
         ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
         with:
           version: 12
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node_version }}
           cache: "pnpm"
@@ -42,6 +42,3 @@ jobs:
             @nestjs/schematics@^${{ matrix.peer_version.nest }} \
             @nestjs/swagger@^${{ matrix.peer_version.swagger }}
           pnpm run test-swagger${{ matrix.peer_version.swagger }}
-
-
-

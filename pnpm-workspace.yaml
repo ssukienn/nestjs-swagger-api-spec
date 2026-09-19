@@ -4,3 +4,5 @@ allowBuilds:
   "@nestjs/core": true
   "@scarf/scarf": false
   esbuild: true
+minimumReleaseAgeExclude:
+  - '@types/node@26.6.2'
