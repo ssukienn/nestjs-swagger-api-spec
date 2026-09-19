@@ -97,8 +97,12 @@ type NestJsSwaggerModule = typeof nestjsSwaggerModule;
 type NestJsSwaggerMethods = ExtractFunctions<NestJsSwaggerModule>;
 
 type NestJSwaggerNotComposableMethodsKeys =
-  // properties decorator are not used on controllers/handlers
-  "ApiHideProperty" | "ApiProperty" | "ApiPropertyOptional";
+  // DTO/property/schema decorators are not used on controllers/handlers
+  | "ApiHideProperty"
+  | "ApiProperty"
+  | "ApiPropertyOptional"
+  | "ApiResponseProperty"
+  | "ApiSchema";
 
 type BrandFunction<
   Brand extends string,

@@ -67,7 +67,7 @@ The order of decorators can be customized by adding a suffix number to the optio
 
 * Decorator factories must be named with the Api prefix.
 * Using property names with a format other than expected may result in errors.
-* `ApiProperty`, `ApiPropertyOptional`, and `ApiHideProperty` decorators are not supported for route handler decorators.
+* `ApiProperty`, `ApiPropertyOptional`, `ApiHideProperty`, `ApiResponseProperty`, and `ApiSchema` decorators are not supported for route handler decorators.
 * Future Nest versions breaking the contract of applyDecorators may impact the implementation.
 
 ## Getting Support & Contributing

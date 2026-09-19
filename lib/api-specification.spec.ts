@@ -18,6 +18,8 @@ jest.mock("@nestjs/swagger", () => ({
   ApiProperty: jest.fn(),
   ApiHideProperty: jest.fn(),
   ApiPropertyOptional: jest.fn(),
+  ApiResponseProperty: jest.fn(),
+  ApiSchema: jest.fn(),
 }));
 
 // Mock applyDecorators to return the passed params as array instead of combining them into one
@@ -316,6 +318,8 @@ describe("ApiSpecification", () => {
           apiPropertyOptionalOptions: (apiDecorator: unknown) => [],
           apiHidePropertyOptions: (apiDecorator: unknown) => [],
           apiHidePropertyOptions1234: (apiDecorator: unknown) => [],
+          apiResponsePropertyOptions: (apiDecorator: unknown) => [],
+          apiSchemaOptions: (apiDecorator: unknown) => [],
         } as any),
       ).toThrow(
         "ApiSpecification decorator must define at least one supported Api decorator.",
