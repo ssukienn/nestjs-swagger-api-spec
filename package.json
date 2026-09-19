@@ -19,28 +19,30 @@
     "build": "tsup lib/index.ts --format cjs,esm --dts-resolve --clean",
     "release": "pnpm run build && changeset publish",
     "lint": "tsc",
-    "test-swagger7": "pnpm run \"/^test:swagger7.*/\" --color",
-    "test-swagger8": "pnpm run \"/^test:swagger8.*/\" --color",
-    "test:swagger7:lib": "pnpm jest",
-    "test:swagger8:lib": "pnpm jest",
-    "test:swagger7:e2e": "cd example/typescript-starter && pnpm i && pnpm run test:swagger7:e2e",
-    "test:swagger8:e2e": "cd example/typescript-starter && pnpm i && pnpm run test:swagger8:e2e"
+    "test-swagger11": "pnpm run \"/^test:swagger11.*/\" --color",
+    "test-swagger12": "pnpm run \"/^test:swagger12.*/\" --color",
+    "test:swagger11:lib": "pnpm jest",
+    "test:swagger12:lib": "pnpm jest",
+    "test:swagger11:e2e": "cd example/typescript-starter && pnpm i && pnpm run test:swagger11:e2e",
+    "test:swagger12:e2e": "cd example/typescript-starter && pnpm i && pnpm run test:swagger12:e2e"
   },
   "peerDependencies": {
-    "@nestjs/common": "^10.0.0",
-    "@nestjs/swagger": "^7.0.0 || ^8.0.0"
+    "@nestjs/common": "^11.0.0 || ^12.0.0",
+    "@nestjs/swagger": "^11.0.0 || ^12.0.0"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "^0.5.0",
-    "@changesets/cli": "^2.27.10",
+    "@changesets/changelog-github": "^0.5.2",
+    "@changesets/cli": "^2.31.1",
+    "@nestjs/common": "^12.0.3",
+    "@nestjs/swagger": "^12.0.1",
     "@types/jest": "^29.5.14",
-    "@types/node": "^22.10.1",
+    "@types/node": "^22.20.3",
     "jest": "^29.7.0",
-    "prettier": "^3.4.2",
-    "ts-jest": "^29.2.5",
+    "prettier": "^3.9.8",
+    "ts-jest": "^29.4.12",
     "tsd": "^0.31.2",
-    "tsup": "^8.3.5",
-    "typescript": "^5.7.2"
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -57,6 +59,6 @@
   },
   "volta": {
     "node": "22.12.0",
-    "pnpm": "9.15.0"
+    "pnpm": "12.4.2"
   }
 }

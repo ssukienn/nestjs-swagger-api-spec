@@ -1,3 +1,7 @@
+jest.mock("@nestjs/swagger", () => ({
+  ApiOkResponse: jest.fn(() => () => undefined),
+}));
+
 import { ApiOkResponse } from "@nestjs/swagger";
 import { expectNotAssignable, expectNotType, expectType } from "tsd";
 import { ApiOptions } from "./api-specification";

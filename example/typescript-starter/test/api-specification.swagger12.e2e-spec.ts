@@ -1,8 +1,8 @@
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import * as request from 'supertest';
+import request from 'supertest';
 import { Test } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
-import { AppModule } from '../src/swagger8/app.module';
+import { AppModule } from '../src/swagger12/app.module';
 
 describe('@ApiSpecification', () => {
   let app: INestApplication;

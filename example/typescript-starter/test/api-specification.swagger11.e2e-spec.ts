@@ -1,8 +1,8 @@
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import * as request from 'supertest';
+import request from 'supertest';
 import { Test } from '@nestjs/testing';
-import { AppModule } from '../src/swagger7/app.module';
 import { INestApplication } from '@nestjs/common';
+import { AppModule } from '../src/swagger11/app.module';
 
 describe('@ApiSpecification', () => {
   let app: INestApplication;
@@ -48,4 +48,21 @@ describe('@ApiSpecification', () => {
     expect(response).toBeDefined();
   });
 
+  it('should generate OpenApi spec from handler with links', async () => {
+    const openApiResCode = '222';
+
+    const res = await request(app.getHttpServer()).get('/api-json').expect(200);
+
+    const response = res.body.paths['/'].get.responses[openApiResCode];
+    expect(response.links).toBeDefined();
+  });
+
+  it('should generate OpenApi spec from handler with links', async () => {
+    const openApiResCode = '222';
+
+    const res = await request(app.getHttpServer()).get('/api-json').expect(200);
+
+    const response = res.body.paths['/'].get.responses[openApiResCode];
+    expect(response.links).toBeDefined();
+  });
 });

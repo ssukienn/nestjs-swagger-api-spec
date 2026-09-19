@@ -11,18 +11,18 @@ jobs:
         node_version: [
           20,
           22,
-          23
+          24
         ]
         peer_version: [
-          { common: 10, swagger: 7 },
-          { common: 10, swagger: 8 }
+          { nest: 11, swagger: 11 },
+          { nest: 12, swagger: 12 }
         ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 12
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node_version }}
@@ -32,9 +32,15 @@ jobs:
 
       - run: pnpm run lint && pnpm run build
 
-      # if swagger: 8 then run test:swagger8 else swagger7, etc.
       - run: |
-          pnpm -C example/typescript-starter add @nestjs/common@^${{ matrix.peer_version.common }} @nestjs/swagger@^${{ matrix.peer_version.swagger }}
+          pnpm -C example/typescript-starter add \
+            @nestjs/common@^${{ matrix.peer_version.nest }} \
+            @nestjs/core@^${{ matrix.peer_version.nest }} \
+            @nestjs/platform-express@^${{ matrix.peer_version.nest }} \
+            @nestjs/testing@^${{ matrix.peer_version.nest }} \
+            @nestjs/cli@^${{ matrix.peer_version.nest }} \
+            @nestjs/schematics@^${{ matrix.peer_version.nest }} \
+            @nestjs/swagger@^${{ matrix.peer_version.swagger }}
           pnpm run test-swagger${{ matrix.peer_version.swagger }}
 
 

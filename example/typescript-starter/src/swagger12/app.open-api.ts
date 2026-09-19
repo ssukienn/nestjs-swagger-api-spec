@@ -18,4 +18,7 @@ export const appHelloHandlerOpenApiSpec: ApiOptions = {
   apiResponseOptions: (apiDecorator) => [
     apiDecorator({ status: 222, type: Hello }),
   ],
+  apiLinkOptions: (apiDecorator) => [
+    apiDecorator({ from: Hello, routeParam: 'id' }),
+  ],
 };

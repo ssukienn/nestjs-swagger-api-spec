@@ -7,9 +7,17 @@ import {
 import { AppService } from './app.service';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
+
 export class Hello {
   @ApiProperty()
   hello: string;
+
+  @ApiProperty({ link: () => Hello })
+  @ApiPropertyOptional()
+  world?: string;
+
+  @ApiProperty({ link: () => Hello })
+  anotherWorld: string;
 }
 
 @ApiSpecification(appControllerOpenApiSpec)
