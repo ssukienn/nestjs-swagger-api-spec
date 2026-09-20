@@ -17,7 +17,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsup lib/index.ts --format cjs,esm --dts-resolve --clean",
-    "release": "pnpm run build && changeset publish",
+    "release": "pnpm run build && changeset publish --no-git-tag",
     "lint": "tsc",
     "test-swagger11": "pnpm run \"/^test:swagger11.*/\" --color",
     "test-swagger12": "pnpm run \"/^test:swagger12.*/\" --color",
