@@ -38,3 +38,43 @@ jobs:
         with:
           publish-script: pnpm run release
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          create-github-releases: false
+          push-git-tags: false
+      # pnpm-workspace.yaml makes Changesets treat this as a workspace, so its
+      # default tags are name@version. Keep the historical vX.Y.Z GitHub releases.
+      - name: Create v-prefixed GitHub release
+        if: steps.changesets.outputs.published == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISHED_PACKAGES: ${{ steps.changesets.outputs.published-packages }}
+        run: |
+          python3 - <<'PY'
+          import json, os, pathlib, re, subprocess
+
+          pkgs = json.loads(os.environ["PUBLISHED_PACKAGES"])
+          changelog = pathlib.Path("CHANGELOG.md").read_text()
+          for pkg in pkgs:
+              version = pkg["version"]
+              tag = f"v{version}"
+              match = re.search(
+                  rf"^## {re.escape(version)}\n\n(.*?)(?=\n## |\Z)",
+                  changelog,
+                  re.S | re.M,
+              )
+              notes = match.group(1).strip() if match else f"Release {version}"
+              pathlib.Path("/tmp/release-notes.md").write_text(notes)
+              subprocess.check_call(["git", "tag", tag])
+              subprocess.check_call(["git", "push", "origin", tag])
+              subprocess.check_call(
+                  [
+                      "gh",
+                      "release",
+                      "create",
+                      tag,
+                      "--title",
+                      tag,
+                      "--notes-file",
+                      "/tmp/release-notes.md",
+                  ]
+              )
+          PY
